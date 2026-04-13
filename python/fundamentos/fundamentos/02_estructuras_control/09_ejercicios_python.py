@@ -90,15 +90,44 @@ El ciclo debe terminar cuando el usuario ingrese un número negativo.
 Al final, muestra la suma total (sin incluir el negativo).
 """
 
+def sumatoriaCentinela ():
+    total = 0
+    while True:
+        num = int(input("Ingresa un numero: "))
+        if num < 0:
+            break
+        total += num
+    print(f"Suma total de los numeros: {total}")
+
 """7. Contador de Vocales
 Pide al usuario una frase o palabra. Utiliza un bucle para recorrer 
 la cadena y contar cuántas vocales tiene en total.
 """
 
+def contadorVocales():
+    texto = input("Ingresa una palabra o frase: ").lower()
+    vocales = 0
+    for i in range(len(texto)):
+        if texto[i] == "a" or texto[i] == "e" or texto[i] == "i" or texto[i] == "o" or texto[i] == "u" :
+            vocales += 1
+    print(f"La/s palabra/s {texto} tiene {vocales} vocales en total")
+
 """8. Validación de Contraseña
 Define una contraseña en una variable. Pide al usuario que la intente adivinar. 
 Tienes un máximo de 3 intentos; si falla los 3, bloquea el acceso.
 """
+def validacionContraseña():
+    contraseña = "ELIIII"
+    maxIntento = 3
+    for i in range(maxIntento):
+        intento = input(f"Adivina la contraseña: ")
+        if intento == contraseña:
+            print("¡Buen trabajo!")
+            return 
+        if i < maxIntento - 1:
+            print("Intenta de nuevo.")
+    print("Acceso bloqueado.")
+
 
 # III. Manejo de Arreglos / Listas (Avanzado)
 
@@ -107,19 +136,61 @@ Crea un arreglo vacío. Pide al usuario que ingrese 5 nombres.
 Guárdalos en el arreglo y, al final, imprímelos en orden inverso al que fueron ingresados.
 """
 
+def registroNombres():
+    registro = []
+    for i in range(5):
+        nombre = input(f"Ingresar nombre: ")
+        registro.append(nombre)
+    registro.reverse()
+    print(f"Registro de nombres en orden inverso: {registro}")
+
+
 """10. Promedio de Notas
 Solicita al usuario cuántas notas desea ingresar. 
 Almacena cada nota en un arreglo. Al finalizar, calcula y muestra el promedio, la nota más alta y la más baja.
 """
+
+def promedioNota():
+    cantidad = int(input("¿Cuantas notas desea ingresar? :"))
+    notas = []
+    for i in range(cantidad):
+        nota = float(input(f"Nota {i+1}: "))
+        notas.append(nota)
+    promedio = sum(notas) / len(notas)
+    print(f"Promedio: {promedio}")
+    print(f"Nota mas alta: {max(notas)}")
+    print(f"Nota mas baja: {min(notas)}")
 
 """11. Filtro de Arreglos
 Dado un arreglo de números generado por el usuario, crea un nuevo arreglo que contenga 
 solo los números que sean mayores a 50. Muestra ambos arreglos.
 """
 
+def filtroArreglo():
+    cantidad = int(input("¿Cuantos numeros desea ingresar? :"))
+    usuario = []
+    mayor50 = []
+    for i in range(cantidad):
+        dato = int(input("Ingresar dato: "))
+        usuario.append(dato)
+        if dato > 50:
+            mayor50.append(dato)
+    print(f"Arreglo usuario: {usuario}")
+    print(f"Arreglo solo con numeros mayores a 50: {mayor50} ")
+
+
 """12. Buscador de Elementos
 Crea una lista de 10 ciudades. Pide al usuario que ingrese el nombre de una ciudad y 
 el programa debe decir si la ciudad se encuentra en la lista y en qué índice (posición) está."""
+
+def buscadorCiudad():
+    ciudades = ["Santiago", "Paris", "Londres", "Lima", "Berlin", "Buenos Aires", "Rio", "Tokio", "Caracas", "Seoul"]
+    ciudad = input("Ingresar ciudad").capitalize()
+    esta = ciudades.index(ciudad)
+    if esta < len(ciudades):
+        print(f"Tu ciudad está en el arreglo, en la posición {esta}")
+    else:
+        print("Tu ciudad no está en el arreglo")
 
 # IV. Retos de Lógica Combinada
 
@@ -180,22 +251,22 @@ while continuar:
         print(tablaMultiplicar())
     elif opcion == "6":
         print("\nEjecutando ejercicio 6: ")
-        print()
+        print(sumatoriaCentinela())
     elif opcion == "7":
         print("\nEjecutando ejercicio 7: ")
-        print()
+        print(contadorVocales())
     elif opcion == "8":
         print("\nEjecutando ejercicio 8: ")
-        print()
+        print(validacionContraseña())
     elif opcion == "9":
         print("\nEjecutando ejercicio 9: ")
-        print()
+        print(registroNombres())
     elif opcion == "10":
         print("\nEjecutando ejercicio 10: ")
-        print()
+        print(promedioNota())
     elif opcion == "11":
         print("\nEjecutando ejercicio 11: ")
-        print()
+        print(filtroArreglo())
     elif opcion == "12":
         print("\nEjecutando ejercicio 12: ")
         print()
