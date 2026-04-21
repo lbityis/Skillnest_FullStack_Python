@@ -17,19 +17,19 @@ buenos_dias("al amor")
 buenos_dias("a la vida")
 buenos_dias("señor Sol")
 
+
 # Devolución de valores
 def buenos_dias2(nombre):
    return "Buenos días "+nombre
 frase = buenos_dias2("Python") #El valor de retorno de la función es "Buenos días Python", por lo que el valor de mi variable frase será ese
 print(frase) #Imprime: Buenos días Python
 
+
 # Ejercicio de retorno de valor.
 # Crear una funcion que reciba dos parametros (una frase y una palabra)
 # Devolver el valor de la frase completa e imprimir
-
 def crearfrase(frase, palabra):
    return f"{frase} {palabra}"
-
 frase = input("Ingrese una frase: ")
 palabra = input("Ingrese una palabra: ")
 resultadoFrase = crearfrase(frase, palabra)
