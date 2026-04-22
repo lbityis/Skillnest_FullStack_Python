@@ -203,9 +203,6 @@ def mostrar_likes():
 
 mostrar_seguidores()
 
-# Variables  |   Valores
-
-# Salida : 
 
 '''15. Función que muestra "Reproducciones" de un tema musical y recibe un valor de otra función,
 luego retorna un número que podría ser un "ID" final de procesamiento.'''
