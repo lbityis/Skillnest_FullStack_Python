@@ -1,0 +1,117 @@
+/* Configuración General */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Comfortaa', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Tipografía */
+h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.comments-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.link-author {
+    color: #3b82f6;
+    font-size: 14px;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.lorem-text {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+/* Inputs y Botones (Estilo Wireframe/Boceto) */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.custom-input {
+    flex-grow: 1;
+    height: 34px;
+    border: 2px solid #000000;
+    padding: 0 10px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Estilo específico para el placeholder en cursiva */
+.custom-input::placeholder {
+    font-style: italic;
+    color: #000000;
+}
+
+/* Botón con el efecto de doble borde/sombra de la imagen */
+.btn-enviar {
+    height: 34px;
+    padding: 0 15px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    /* Genera la sombra negra sólida e idéntica a la del dibujo */
+    box-shadow: 3px 3px 0px #000000;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Efecto opcional al hacer click para simular que se presiona */
+.btn-enviar:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #000000;
+}
+
+/* Ajustes de espaciado específicos */
+.main-input .custom-input {
+    max-width: 440px; /* Limita el ancho para que coincida visualmente */
+}
+
+.comment-input {
+    margin-top: 20px;
+}
+
+.comment-input .custom-input {
+    max-width: 380px;
+}
