@@ -17,12 +17,8 @@ while True:
 
     if opcion == "1":
         limpiar_consola()
-        print("Usuario: ")
-        username = input()
-        print("Contraseña: ")
-        password = input()
-        
-        # Validar credenciales
+        username = input("Usuario: ")
+        password = input("Contraseña: ")
         sesion = Usuario.validar_inicio_sesion(username, password)
         
         if sesion:
@@ -37,19 +33,17 @@ while True:
                     print("3. Buscar usuario")
                     print("4. Modificar usuario")
                     print("5. Eliminar usuario")
-                    print("6. Cerrar sesión")
+                    print("6. Cambiar mi contraseña")
+                    print("7. Cerrar sesión")
                     print("==============================")
                     
                     opc_admin = input("Selecciona una opción: ")
                     
                     if opc_admin == "1":
                         limpiar_consola()
-                        print("Usuario: ")
-                        u = input()
-                        print("Contraseña: ")
-                        p = input()
-                        print("Tipo (ADMIN o USER): ")
-                        t = input().upper()
+                        u = input("Usuario: ")
+                        p = input("Contraseña: ")
+                        t = input("Tipo (ADMIN o USER): ").upper()
                         
                         nuevo_usuario = Usuario(u, p, t)
                         nuevo_usuario.crear()
@@ -62,13 +56,16 @@ while True:
                         
                     elif opc_admin == "3":
                         limpiar_consola()
-                        id_buscar = int(input("Introduce el ID: "))
-                        res = Usuario.buscar_por_id(id_buscar)
-                        if res:
-                            t_str = "ADMIN" if res[2] == 1 else "USER"
-                            print(f"\nID: {res[0]}\nUsuario: {res[1]}\nTipo: {t_str}")
-                        else:
-                            print("\nUsuario no encontrado.")
+                        try:
+                            id_buscar = int(input("Introduce el ID: "))
+                            res = Usuario.buscar_por_id(id_buscar)
+                            if res:
+                                t_str = "ADMIN" if res[2] == 1 else "USER"
+                                print(f"\nID: {res[0]}\nUsuario: {res[1]}\nTipo: {t_str}")
+                            else:
+                                print("\nUsuario no encontrado.")
+                        except ValueError:
+                            print("\nID inválido.")
                         input("\nPresiona Enter para continuar...")
                         
                     elif opc_admin == "4":
@@ -82,8 +79,13 @@ while True:
                         input("\nPresiona Enter para continuar...")
                         
                     elif opc_admin == "6":
+                        limpiar_consola()
+                        nueva_p = input("Introduce tu nueva contraseña: ")
+                        Usuario.cambiar_password(sesion["id"], nueva_p)
+                        input("\nPresiona Enter para continuar...")
+                        
+                    elif opc_admin == "7":
                         break 
-
             # ================= MENÚ USUARIO REGULAR =================
             elif sesion["tipo"] == "USER":
                 while True:
@@ -91,11 +93,17 @@ while True:
                     print("==============================")
                     print(f"Bienvenido\n\n{sesion['usuario']}\n")
                     print("Tipo de usuario:\nUSER\n")
-                    print("1. Cerrar sesión")
+                    print("1. Cambiar mi contraseña")
+                    print("2. Cerrar sesión")
                     print("==============================")
                     
-                    opc_user = input()
+                    opc_user = input("Selecciona una opción: ")
                     if opc_user == "1":
+                        limpiar_consola()
+                        nueva_p = input("Introduce tu nueva contraseña: ")
+                        Usuario.cambiar_password(sesion["id"], nueva_p)
+                        input("\nPresiona Enter para continuar...")
+                    elif opc_user == "2":
                         break 
                         
         else:

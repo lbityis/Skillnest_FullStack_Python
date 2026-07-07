@@ -7,8 +7,24 @@ class Usuario:
         self.password = password
         self.tipo = tipo 
 
-    # 1. Crear usuario
+    @staticmethod
+    def existe_usuario(username):
+        conexion = Conexion.conectar()
+        cursor = conexion.cursor()
+        
+        sql = "SELECT id_usuario FROM usuarios WHERE username = %s AND deleted = 0"
+        cursor.execute(sql, (username,))
+        resultado = cursor.fetchone()
+        
+        cursor.close()
+        conexion.close()
+        return resultado is not None
+
     def crear(self):
+        if Usuario.existe_usuario(self.usuario):
+            print(f"\n[Error] El nombre de usuario '{self.usuario}' ya está registrado.")
+            return False
+            
         conexion = Conexion.conectar()
         cursor = conexion.cursor()
     
@@ -24,8 +40,8 @@ class Usuario:
         
         cursor.close()
         conexion.close()
+        return True
 
-    # 2. Buscar usuario por ID (Método estático)
     @staticmethod
     def buscar_por_id(id_usuario):
         conexion = Conexion.conectar()
@@ -39,7 +55,6 @@ class Usuario:
         conexion.close()
         return resultado 
 
-    # 3. Obtener listado de usuarios (Método estático)
     @staticmethod
     def listar():
         conexion = Conexion.conectar()
@@ -57,14 +72,15 @@ class Usuario:
         print("\nID   Usuario        Tipo")
         print("---------------------------")
         for u in usuarios:
-
-            tipo_formato = "ADMIN" if u[2] == "Administrador" else "USER"
+            tipo_formato = "ADMIN" if u[2] == "Administrador" or u[2] == 1 else "USER"
             print(f"{u[0]}    {u[1]:<14} {tipo_formato}")
             
+        print("---------------------------")
+        print(f"Total de usuarios registrados: {len(usuarios)}")
+        
         cursor.close()
         conexion.close()
 
-    # 4. Modificar usuario (Método estático para mantenerlo simple)
     @staticmethod
     def modificar():
         id_usuario = int(input("Modificar usuario ID: "))
@@ -72,6 +88,11 @@ class Usuario:
         
         if user:
             nuevo_user = input("Nuevo usuario: ")
+            
+            if nuevo_user != user[1] and Usuario.existe_usuario(nuevo_user):
+                print(f"\n[Error] El nombre de usuario '{nuevo_user}' ya está en uso.")
+                return
+                
             nuevo_pass = input("Nueva contraseña: ")
             nuevo_tipo = input("Nuevo tipo (ADMIN o USER): ").upper()
             id_tipo = 1 if nuevo_tipo == "ADMIN" else 2
@@ -91,24 +112,26 @@ class Usuario:
         else:
             print("\nUsuario no encontrado.")
 
-    # 5. Eliminar usuario (Método estático para mantenerlo simple)
     @staticmethod
     def eliminar():
         id_usuario = int(input("Eliminar usuario ID: "))
         user = Usuario.buscar_por_id(id_usuario)
         
         if user:
-            conexion = Conexion.conectar()
-            cursor = conexion.cursor()
-            cursor.execute("DELETE FROM usuarios WHERE id_usuario = %s", (id_usuario,))
-            conexion.commit()
-            print("\nUsuario eliminado correctamente.")
-            cursor.close()
-            conexion.close()
+            confirmacion = input(f"¿Estás seguro de que deseas eliminar al usuario '{user[1]}'? (S/N): ").upper()
+            if confirmacion == "S":
+                conexion = Conexion.conectar()
+                cursor = conexion.cursor()
+                cursor.execute("UPDATE usuarios SET deleted = 1 WHERE id_usuario = %s", (id_usuario,))
+                conexion.commit()
+                print("\nUsuario eliminado correctamente.")
+                cursor.close()
+                conexion.close()
+            else:
+                print("\nEliminación cancelada.")
         else:
             print("\nUsuario no encontrado.")
 
-    # 6. Validar inicio de sesión
     @staticmethod
     def validar_inicio_sesion(usuario, password):
         conexion = Conexion.conectar()
@@ -125,3 +148,16 @@ class Usuario:
             tipo_str = "ADMIN" if resultado[2] == 1 else "USER"
             return {"id": resultado[0], "usuario": resultado[1], "tipo": tipo_str}
         return None
+
+    @staticmethod
+    def cambiar_password(id_usuario, nueva_password):
+        conexion = Conexion.conectar()
+        cursor = conexion.cursor()
+        
+        sql = "UPDATE usuarios SET password_hash = %s WHERE id_usuario = %s"
+        cursor.execute(sql, (nueva_password, id_usuario))
+        conexion.commit()
+        print("\nContraseña actualizada correctamente.")
+        
+        cursor.close()
+        conexion.close()
