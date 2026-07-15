@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/bienvenido')
+@app.route('/')
 def bienvenido():
    return render_template('index.html', cancion="dale a tu cuerpo alegría macarena", repite=5)
 
