@@ -1,0 +1,73 @@
+/* ==========================================
+   Estilos Personalizados - Mercado de Frutas
+   ========================================== */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Encabezado Principal (Hero) */
+.hero {
+    background: linear-gradient(rgba(40, 167, 69, 0.85), rgba(40, 167, 69, 0.95)), 
+                url('../images/hero-bg.jpg') center/cover no-repeat;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Tarjetas de Frutas */
+.fruta-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.fruta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+.fruta-card img {
+    height: 200px;
+    object-fit: cover;
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #eee;
+}
+
+/* Ajustes de componentes de Bootstrap */
+.card-header {
+    background-color: #ffffff;
+    border-bottom: 2px solid #e9ecef;
+    padding: 15px 20px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.navbar-brand i {
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+/* Contenedor de tabla de resumen */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+}
