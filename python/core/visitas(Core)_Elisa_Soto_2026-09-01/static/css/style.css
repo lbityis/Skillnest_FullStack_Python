@@ -14,7 +14,12 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 320px;
+    width: 350px;
+}
+
+.botones {
+    display: flex;
+    justify-content:space-between;
 }
 
 h1 {
@@ -32,14 +37,15 @@ form {
     margin-bottom: 10px;
 }
 
-input[type="number"] {
-    padding: 8px;
+.input{
+    width: 64px;
+    padding: 8px 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 button {
-    padding: 8px 8px;
+    padding: 8px;
     border: none;
     border-radius: 5px;
     background-color: #d90e7ab4;
@@ -54,8 +60,9 @@ button:hover {
 
 .btn-reset {
     background-color: #07d6ff;
+    padding: 8px;
     color: #333;
-    width: 100%;
+    width: 70px;
 }
 
 .btn-reset:hover {
@@ -71,5 +78,5 @@ button:hover {
 }
 
 .btn-clear:hover {
-    text-decoration: underline;
+    color: black;
 }
