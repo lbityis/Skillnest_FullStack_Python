@@ -1,105 +1,64 @@
 # ==========================================
 # IMPORTACIONES
 # ==========================================
-
-from flask import Flask, render_template, request, redirect
-
+from flask import Flask, render_template, request, redirect, url_for
 
 # ==========================================
 # CREACIÓN DE LA APLICACIÓN
 # ==========================================
-
 app = Flask(__name__)
 
-
 # ==========================================
-# RUTA PRINCIPAL
+# RUTA PRINCIPAL (Formulario)
 # ==========================================
-
 @app.route("/")
 def index():
-    """
-    Muestra el formulario de creación de usuario.
-    """
-
+    """Muestra el formulario de registro de producto."""
     return render_template("index.html")
 
-
 # ==========================================
-# PROCESAR FORMULARIO
+# PROCESAR FORMULARIO (POST Only)
 # ==========================================
-
-@app.route("/crear_usuario", methods=["POST"])
-def crear_usuario():
+@app.route("/registrar", methods=["POST"])
+def registrar():
     """
-    Recibe la información enviada mediante POST.
-
-    Esta función se encarga de procesar los datos
-    antes de realizar la redirección.
+    Recibe la información del producto mediante POST,
+    la procesa (muestra en consola) y redirige.
     """
-
-    # ------------------------------------------
-    # Obtener los datos enviados por el formulario
-    # ------------------------------------------
-
+    # 1. Obtener los datos usando request.form
     nombre = request.form["nombre"]
+    precio = request.form["precio"]
+    categoria = request.form["categoria"]
 
-    email = request.form["email"]
-
-
-    # ------------------------------------------
-    # Mostrar los datos en la terminal
-    # ------------------------------------------
-
-    print("===================================")
-
-    print("Información recibida")
-
+    # 2. Mostrar la información en la terminal con el formato solicitado
+    print("\n============================")
+    print("Producto recibido")
     print(f"Nombre: {nombre}")
+    print(f"Precio: {precio}")
+    print(f"Categoría: {categoria}")
+    print("============================\n")
 
-    print(f"Email: {email}")
-
-    print("===================================")
-
-
-    # ------------------------------------------
-    # Redireccionar al usuario
-    # ------------------------------------------
-
-    return redirect("/mostrar_usuario")
-
+    # 3. Redireccionar de manera segura usando url_for hacia una ruta GET
+    return redirect(url_for("resultado"))
 
 # ==========================================
-# MOSTRAR RESULTADO
+# MOSTRAR RESULTADO (GET)
 # ==========================================
+@app.route("/resultado")
+def resultado():
+    """Muestra la página de éxito tras la redirección."""
+    return render_template("resultado.html")
 
-@app.route("/mostrar_usuario")
-def mostrar_usuario():
-    """
-    Esta ruta recibe una solicitud GET después
-    de la redirección.
-    """
-
-    print("Usuario redirigido")
-
-    # ------------------------------------------
-    # request.form estará vacío
-    # ------------------------------------------
-
-    print(request.form)
-
-
-    # ------------------------------------------
-    # Mostrar la plantilla
-    # ------------------------------------------
-
-    return render_template("mostrar.html")
-
+# ==========================================
+# SECCIÓN DE AYUDA (Desafío Adicional)
+# ==========================================
+@app.route("/ayuda")
+def ayuda():
+    """Explica conceptualmente el comportamiento del protocolo HTTP."""
+    return render_template("ayuda.html")
 
 # ==========================================
 # EJECUTAR SERVIDOR
 # ==========================================
-
 if __name__ == "__main__":
-
     app.run(debug=True)
