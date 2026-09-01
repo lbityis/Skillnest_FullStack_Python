@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Visitas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="card">
+        <h1>Visitas: {{ session['visitas'] }}</h1>
+        <div class="reinicios">Reinicios: {{ session['reinicios'] }}</div>
+
+        <form action="/sumar2" method="POST">
+            <button type="submit" class="btn-full">+2 Visitas</button>
+        </form>
+
+        <form action="/sumar_num" method="POST" class="form-inline">
+            <input type="number" name="cantidad" placeholder="Cant." required>
+            <button type="submit" class="btn-small">Sumar</button>
+        </form>
+
+        <form action="/reset" method="POST">
+            <button type="submit" class="btn-reset">Reiniciar</button>
+        </form>
+
+        <a href="/destruir_sesion" class="btn-clear">Eliminar Sesión</a>
+    </div>
+
+</body>
+</html>
