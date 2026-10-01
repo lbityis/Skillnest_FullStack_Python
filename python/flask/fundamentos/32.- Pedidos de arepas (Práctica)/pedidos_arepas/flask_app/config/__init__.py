@@ -1,1 +1,0 @@
-# Paquete de configuración de la aplicación.
