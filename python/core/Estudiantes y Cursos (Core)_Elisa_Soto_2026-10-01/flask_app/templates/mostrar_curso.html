@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Mostrar Curso{% endblock %}
+
+{% block content %}
+<div class="pantalla-mostrar-curso">
+    <h1>Estudiantes de {{ curso.nombre }}</h1>
+
+    <div class="contenedor-tabla">
+        {% if curso.estudiantes %}
+            <table class="tabla-wireframe">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for est in curso.estudiantes %}
+                        <tr>
+                            <td>{{ est.nombre }}</td>
+                            <td>{{ est.apellido }}</td>
+                            <td>{{ est.edad }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Este curso aún no tiene estudiantes asignados.</p>
+        {% endif %}
+    </div>
+
+    <div class="enlace-inicio">
+        <a href="{{ url_for('ver_cursos') }}">Inicio</a>
+    </div>
+</div>
+{% endblock %}

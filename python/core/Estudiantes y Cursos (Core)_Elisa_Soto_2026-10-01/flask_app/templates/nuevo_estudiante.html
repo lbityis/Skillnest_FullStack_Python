@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Nuevo Estudiante{% endblock %}
+
+{% block content %}
+<div class="pantalla-nuevo-estudiante">
+    <h2>Nuevo Estudiante</h2>
+    
+    <form action="{{ url_for('guardar_estudiante') }}" method="POST" class="form-estudiante">
+        
+        <div class="campo-horizontal">
+            <label for="curso_id">Curso:</label>
+            <select id="curso_id" name="curso_id" required>
+                {% for curso in cursos %}
+                    <option value="{{ curso.id }}">{{ curso.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="campo-horizontal">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="campo-horizontal">
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+        </div>
+
+        <div class="campo-horizontal">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="1" required>
+        </div>
+
+        <div class="bloque-botones">
+            <button type="submit" class="boton-simple">Crear</button>
+        </div>
+
+        <div class="enlace-inicio">
+            <a href="{{ url_for('ver_cursos') }}">Inicio</a>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

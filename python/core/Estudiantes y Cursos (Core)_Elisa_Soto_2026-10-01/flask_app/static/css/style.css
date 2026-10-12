@@ -1,0 +1,169 @@
+/* Reseteo basico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    color: #000000;
+    padding: 30px;
+}
+
+/* Layout general */
+.contenedor-principal {
+    width: 750px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Titulos y enlaces */
+h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #0044cc;
+    text-decoration: underline;
+}
+
+.enlace-inicio {
+    margin-top: 30px;
+}
+
+.enlace-agregar {
+    margin-top: 15px;
+}
+
+/* Inputs y Selects */
+input[type="text"],
+input[type="number"],
+select {
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    padding: 4px 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Pantalla Cursos (Wireframe Superior Izquierdo) */
+.pantalla-cursos {
+    display: flex;
+    gap: 40px;
+}
+
+.columna-nuevo-curso {
+    width: 250px;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-inline label {
+    font-size: 15px;
+}
+
+.form-inline input {
+    width: 150px;
+}
+
+.columna-lista-cursos {
+    width: 300px;
+}
+
+.caja-borde {
+    border: 2px solid #000000;
+    padding: 15px;
+    min-height: 140px;
+    background-color: #ffffff;
+}
+
+.lista-enlaces {
+    list-style: none;
+}
+
+.lista-enlaces li {
+    margin-bottom: 10px;
+}
+
+/* Pantalla Nuevo Estudiante (Wireframe Superior Derecho) */
+.pantalla-nuevo-estudiante {
+    width: 400px;
+}
+
+.campo-horizontal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.campo-horizontal label {
+    width: 80px;
+    font-size: 15px;
+}
+
+.campo-horizontal input,
+.campo-horizontal select {
+    width: 160px;
+}
+
+.boton-simple {
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 3px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.boton-simple:active {
+    background-color: #e0e0e0;
+}
+
+/* Pantalla Mostrar Curso / Tabla (Wireframe Inferior) */
+.pantalla-mostrar-curso {
+    width: 500px;
+}
+
+.contenedor-tabla {
+    margin-bottom: 20px;
+}
+
+.tabla-wireframe {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000000;
+}
+
+.tabla-wireframe th,
+.tabla-wireframe td {
+    border: 1px solid #000000;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tabla-wireframe th {
+    background-color: #dddddd;
+    font-weight: bold;
+}
+
+.tabla-wireframe tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
