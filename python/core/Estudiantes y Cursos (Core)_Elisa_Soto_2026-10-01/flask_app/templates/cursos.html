@@ -3,23 +3,23 @@
 {% block title %}Cursos{% endblock %}
 
 {% block content %}
-<div class="pantalla-cursos">
+<div class="fila">
     
     <!-- Columna izquierda: Nuevo Curso -->
-    <div class="columna-nuevo-curso">
+    <div class="columna">
         <h2>Nuevo Curso</h2>
-        <form action="{{ url_for('crear_nuevo_curso') }}" method="POST" class="form-inline">
+        <form action="{{ url_for('crear_nuevo_curso') }}" method="POST" class="formulario">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
         </form>
     </div>
 
     <!-- Columna derecha: Todos los Cursos -->
-    <div class="columna-lista-cursos">
+    <div class="columna">
         <h2>Todos los Cursos</h2>
-        <div class="caja-borde">
+        <div class="caja">
             {% if cursos %}
-                <ul class="lista-enlaces">
+                <ul class="lista">
                     {% for curso in cursos %}
                         <li>
                             <a href="{{ url_for('detalle_curso', id=curso.id) }}">{{ curso.nombre }}</a>
@@ -30,7 +30,7 @@
                 <p>No hay cursos registrados.</p>
             {% endif %}
         </div>
-        <div class="enlace-agregar">
+        <div class="enlace">
             <a href="{{ url_for('formulario_estudiante') }}">Agregar Estudiante</a>
         </div>
     </div>

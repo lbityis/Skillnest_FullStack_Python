@@ -3,12 +3,12 @@
 {% block title %}Mostrar Curso{% endblock %}
 
 {% block content %}
-<div class="pantalla-mostrar-curso">
+<div class="detalle">
     <h1>Estudiantes de {{ curso.nombre }}</h1>
 
-    <div class="contenedor-tabla">
+    <div class="cuadro">
         {% if curso.estudiantes %}
-            <table class="tabla-wireframe">
+            <table class="tabla">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -31,7 +31,7 @@
         {% endif %}
     </div>
 
-    <div class="enlace-inicio">
+    <div class="enlace">
         <a href="{{ url_for('ver_cursos') }}">Inicio</a>
     </div>
 </div>
